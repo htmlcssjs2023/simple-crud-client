@@ -25,7 +25,6 @@ function App() {
         form.reset();
       }
     })
-
   }
 
   return (
