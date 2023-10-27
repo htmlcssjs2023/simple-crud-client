@@ -32,3 +32,29 @@ Currently, two official plugins are available:
 
   }
 ```
+
+## Delete single user 
+```JavaScript
+  // =========== client side ============ /
+    const handleDelete = (id)=>{
+        // console.log('User Id :', id);
+        fetch(`http://localhost:5000/users/${id}`,{
+            method:'DELETE',
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+        })
+    }
+
+// =========== server side ======= /
+
+    // Delete data from database
+    app.delete('/users/:id', async(req, res)=>{
+        const id = req.params.id;
+        console.log(id);
+        const query = {_id: new ObjectId(id)}
+        const result = await userCollection.deleteOne(query);
+        res.send(result);
+    })
+```
